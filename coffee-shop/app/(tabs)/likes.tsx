@@ -1,10 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 
 export default function LikesScreen() {
   return (
     <View>
-        asdasdasdasds
+         <Text>asdasdasdasds</Text>
     </View>
   );
 }
