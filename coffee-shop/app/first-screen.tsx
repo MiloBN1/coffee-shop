@@ -3,6 +3,7 @@ import { View } from '@/components/Themed';
 import { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
 import { router } from 'expo-router';
+import {LinearGradient} from 'expo-linear-gradient';
 
 export default function FirstScreen() {
     const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -23,21 +24,26 @@ export default function FirstScreen() {
 
     return (
       <View style={styles.container}>
-              <ImageBackground
-                style={styles.imageBackground}
-                imageStyle = {styles.imageStyle}
-                source={require('../assets/images/Main-Page_Banner.png')}
-                >
-                
-                <View style={styles.blackBlock}>
-                  <Text style={styles.text}>Fall in Love with {'\n'} Coffee in Blissful {'\n'} Delight!</Text>
-                  <Text style={styles.subText}>Welcome to our cozy coffee corner, where {'\n'} every cup is a delightful for you.</Text>
-                  <TouchableOpacity style={styles.button} onPress={() => router.push('/(tabs)/home')}>
-                    <Text style={styles.btnText}>Get Started</Text>
-                  </TouchableOpacity>
-                </View>
-              </ImageBackground>
-            </View>
+        <ImageBackground
+          style={styles.imageBackground}
+          imageStyle={styles.imageStyle}
+          source={require('../assets/images/Main-Page_Banner.png')}
+        >
+          <LinearGradient
+             colors={['rgba(255, 255, 255, 0)', 'rgba(5, 5, 5, 0)', 'rgba(5, 5, 5, 1)']}
+             locations={[0, 0.24, 1]}
+             style={styles.blackBlock}
+             start={{ x: 0.5, y: 0 }} 
+             end={{ x: 0.5, y: 1 }}
+          >
+              <Text style={styles.text}>Fall in Love with {'\n'} Coffee in Blissful {'\n'} Delight!</Text>
+              <Text style={styles.subText}>Welcome to our cozy coffee corner, where {'\n'} every cup is a delightful for you.</Text>
+              <TouchableOpacity style={styles.button} onPress={() => router.push('/(tabs)/home')}>
+                <Text style={styles.btnText}>Get Started</Text>
+              </TouchableOpacity>
+          </LinearGradient>
+        </ImageBackground>
+      </View>
     );
 }
 
@@ -52,7 +58,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Sora-SemiBold',
     fontSize: 32,
-    marginTop: 10,
     color:'#fff',
     textAlign: 'center',
   },
@@ -72,8 +77,8 @@ const styles = StyleSheet.create({
   },
   blackBlock: {
     width:'100%',
-    height:360,
-    backgroundColor: '#0004', // Черный фон
+    height:'44%',
+    backgroundColor: 'transparent', // Черный фон
     alignItems:'center'
   },
   imageStyle: {
