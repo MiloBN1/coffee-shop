@@ -1,77 +1,48 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-
-import { ExternalLink } from './ExternalLink';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
-
-import Colors from '@/constants/Colors';
-
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Image } from 'react-native';
+import { Text, View, } from './Themed';
+import * as Font from 'expo-font';
 export default function EditScreenInfo({ path }: { path: string }) {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Sora-Regular': require('../assets/fonts/Sora-VariableFont_wght.ttf'),
+      });
+      setFontsLoaded(true);
+    }
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null; // Показать загрузку или пустой экран
+  }
   return (
-    <View>
-      <View style={styles.getStartedContainer}>
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
-          Open up the code for this screen:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          darkColor="rgba(255,255,255,0.05)"
-          lightColor="rgba(0,0,0,0.05)">
-          <MonoText>{path}</MonoText>
-        </View>
-
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
-          Change any of the text, save the file, and your app will automatically update.
-        </Text>
-      </View>
-
-      <View style={styles.helpContainer}>
-        <ExternalLink
-          style={styles.helpLink}
-          href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet">
-          <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
-            Tap here if your app doesn't automatically update after making changes
-          </Text>
-        </ExternalLink>
-      </View>
+    <View style={styles.container}>
+      <Image
+        source={require('../assets/images/Main-Page_Banner.png')} // путь к изображению
+        style={{ height:500, marginTop:20}}
+        resizeMode="cover"
+      />
+      <Text style={styles.text}>Fall in Love with {'\n'} Coffee in Blissful {'\n'} Delight!</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  container: {
+    flex: 1, // растянуть на весь экран
+    justifyContent: 'flex-start', // центрировать по вертикали
+    alignItems: 'center', // центрировать по горизонтали
+    backgroundColor: '#000', // цвет фона
+    width:'100%'
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  helpContainer: {
-    marginTop: 15,
-    marginHorizontal: 20,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
+  text: {
+    fontFamily: 'Sora-Regular',
+    fontSize: 32,
+    fontWeight: '400',
+    marginTop: 10,
     textAlign: 'center',
   },
 });
