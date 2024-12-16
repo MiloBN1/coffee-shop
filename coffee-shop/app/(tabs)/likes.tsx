@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function LikesScreen() {
   return (
     <View>
-         <Text>asdasdasdasds</Text>
+         <Text>Likes</Text>
     </View>
   );
 }

@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function NotificationsScreen() {
   return (
     <View>
-      <Text>asdasdasdasds</Text>
+      <Text>Notifications</Text>
     </View>
   );
 }
