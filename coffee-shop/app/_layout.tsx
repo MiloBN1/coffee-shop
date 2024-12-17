@@ -58,6 +58,5 @@ function RootLayoutNav() {
         </Stack>
       </FontProvider>
     </ThemeProvider>
-   
   );
 }

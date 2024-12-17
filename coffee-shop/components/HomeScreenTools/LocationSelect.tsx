@@ -2,27 +2,41 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {Text} from '../Themed'
 import { Picker } from '@react-native-picker/picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function App() {
-  const [selectedValue, setSelectedValue] = useState<string>('java');
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState<string>('Shymkent');
   return (
     <View >
-      <Text>Select a language:</Text>
-      <Picker
-        selectedValue={selectedValue}
-        onValueChange={(itemValue) => setSelectedValue(itemValue)}
-        
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="javascript" />
-        <Picker.Item label="Python" value="python" />
-      </Picker>
-      <Text >You selected: {selectedValue}</Text>
+      <Text>Location</Text>
+      <View style={{display:'flex'}}>
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={[
+            { label: 'Astana', value: 'Astana' },
+            { label: 'Almaty', value: 'Almaty' },
+            { label: 'Shymkent', value: 'Shymkent' },
+          ]}
+          setOpen={setOpen}
+          setValue={setValue}
+          placeholder="Select a location"
+          style={styles.picker}
+        />
+      </View>
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    
+  picker: {
+    width: '100%', // Ширина Pickera
+    backgroundColor: 'transparent', 
+    borderColor: 'transparent', // Цвет границы
+    paddingLeft: 0, // Убираем отступ слева
+    borderWidth:0,
+    marginLeft:0
+  },
 });
