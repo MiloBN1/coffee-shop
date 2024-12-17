@@ -3,10 +3,11 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { Text as DefaultText, View as DefaultView } from 'react-native';
+import { Text as DefaultText, View as DefaultView, StyleSheet } from 'react-native';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from './useColorScheme';
+import { useFontLoaded } from './ProvideFont';
 
 type ThemeProps = {
   lightColor?: string;
@@ -31,10 +32,14 @@ export function useThemeColor(
 }
 
 export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const fontsLoaded = useFontLoaded();
+  const { style, ...otherProps } = props;
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  if (!fontsLoaded) return null; // Шрифты ещё не загружены.
+
+  return (
+    <DefaultText style={[{ fontFamily: 'Sora-Regular' }, style]} {...otherProps} />
+  );
 }
 
 export function View(props: ViewProps) {
@@ -43,3 +48,9 @@ export function View(props: ViewProps) {
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: 'Sora-Regular', // Задаем глобальный шрифт
+  },
+});

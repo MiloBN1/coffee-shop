@@ -1,10 +1,11 @@
+import LocationSelect from '@/components/HomeScreenTools/LocationSelect';
 import { StyleSheet, View,Text } from 'react-native';
 
 
 export default function HomeScreen() {
   return (
     <View>
-        <Text>Home Screen</Text>
+        <LocationSelect></LocationSelect>
     </View>
   );
 }

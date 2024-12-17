@@ -24,28 +24,28 @@ export default function TabLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: '',
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <Tabs.Screen
         name="likes"
         options={{
-          title: 'Likes',
+          title: '',
           tabBarIcon: ({ color }) => <TabBarIcon name="heart" color={color} />,
         }}
       />
       <Tabs.Screen
         name="shop"
         options={{
-          title: 'Shop',
+          title: '',
           tabBarIcon: ({ color }) => <TabBarIcon name="product-hunt" color={color} />,
         }}
       />
       <Tabs.Screen
         name="notifications"
         options={{
-          title: 'Notifications',
+          title: '',
           tabBarIcon: ({ color }) => <TabBarIcon name="bell" color={color} />,
         }}
       />

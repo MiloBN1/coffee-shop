@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { FontProvider } from '@/components/ProvideFont';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,10 +51,12 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={DefaultTheme}>
-       <Stack>
-        <Stack.Screen name="first-screen" options={{ headerShown: false, presentation: 'modal' }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      <FontProvider>
+        <Stack>
+          <Stack.Screen name="first-screen" options={{ headerShown: false, presentation: 'modal' }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </FontProvider>
     </ThemeProvider>
    
   );
